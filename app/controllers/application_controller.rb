@@ -15,9 +15,12 @@ class ApplicationController < ActionController::Base
     # return nil
     user_id = session[:user_id]
     @current_user ||= User.find(user_id) if user_id and User.exists?(user_id)
-    
     return @current_user
   end
   helper_method :current_user
+  
+  def current_user=(arg) #setter method
+    @current_user = arg
+  end
   
 end

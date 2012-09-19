@@ -1,4 +1,14 @@
 class EntriesController < ApplicationController
+  def index
+    # TODO: actually select current giveaway
+    giveaway_id = 1
+    if current_user
+      # This next line is another way to get the appropriate entry
+      # @entry = Entry.where({user_id: current_user.id, giveaway_id: giveaway_id}).first
+    	@entry = Entry.find_by_user_id_and_giveaway_id(current_user.id, giveaway_id)
+    end
+  end
+  
   def create
     
     facebook_id = params[:facebook_uid]

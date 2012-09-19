@@ -1,6 +1,5 @@
 Giveawayr::Application.routes.draw do
-  root :to => 'main#index'
-  
+  root :to => 'entries#index' #Same as: match "/", to: 'entries#index'
   # authentication
   match 'auth/:provider/callback', to: 'sessions#create'
   match 'auth/failure', to: redirect('/')

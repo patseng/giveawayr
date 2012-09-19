@@ -1,0 +1,23 @@
+<!-- <%= %> // embeds the ruby into the html
+<% %> // does not -->
+<% giveaway1 = Giveaway.find(1) %>
+
+<h1>PlateTopper Giveaway</h1>
+<h2> <%= giveaway1.title %> </h2>
+
+<% if current_user and @entry %>
+	<p id="entered_contest"> Entered </p>
+<% elsif current_user and !@entry %>	
+	<button id="enter_contest">Enter Giveaway</button>
+<% elsif !current_user %>
+	<button id="enter_contest">Enter Giveaway with Facebook</button>
+<% end %>
+	
+
+
+<!-- <% if @entry %>
+	<p id="entered_contest"> Entered </p>
+<% else %>
+	<button id="enter_contest">Enter Contest</button>
+<% end %> -->
+	

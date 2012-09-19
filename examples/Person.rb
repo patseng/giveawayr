@@ -32,4 +32,15 @@ end
 class AProgram
   person = Person.new("Mike")
   puts person.first_name
+  
+  if false
+    x = 7
+  end
+  
+  define x
+  if false
+    x = 7
+  end
+  
+  puts x
 end

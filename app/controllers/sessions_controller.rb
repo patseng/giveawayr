@@ -7,6 +7,7 @@ class SessionsController < ApplicationController
   
   def destroy 
     session[:user_id] = nil
+    current_user = nil #Invokes setter method from application controller
     redirect_to root_url
   end
 end
