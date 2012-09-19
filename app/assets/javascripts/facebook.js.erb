@@ -45,11 +45,10 @@ $(function() {
         } else { // they have already logged in          
           // make ajax to the server to enter the user in the giveaway
           FB.api('/me', function(response) {
-            $.ajax({
-              url: ,//TODO,
+		  $.ajax({
+              url: 'http://localhost:3000/entry/create',
               type: 'POST',
-              data: response.id,
-              
+              data: {facebook_uid: response.id}              
             });
           });
         }
