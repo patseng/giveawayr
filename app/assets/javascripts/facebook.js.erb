@@ -13,14 +13,18 @@ $(function() {
       cookie: true
     });
     
-    $('#sign_in').click(function(e) {
-      e.preventDefault();
+    function facebook_login() {
       FB.login(function(response) {
         // redirect
         if (response.authResponse) {
           window.location = '/auth/facebook/callback';
         }
       }, { scope: 'email' });
+    }
+    
+    $('#sign_in').click(function(e) {
+      e.preventDefault();
+      facebook_login();
     });
     
     $('#sign_out').click(function(e) {
@@ -32,7 +36,25 @@ $(function() {
         return true;
       });
     });
-
+    
+    $('#enter_contest').click(function(e) {
+      FB.getLoginStatus(function(response) {
+        // if we are not logged in
+        if (!response.authResponse) {
+          facebook_login(); // login
+        } else { // they have already logged in          
+          // make ajax to the server to enter the user in the giveaway
+          FB.api('/me', function(response) {
+            $.ajax({
+              url: ,//TODO,
+              type: 'POST',
+              data: response.id,
+              
+            });
+          });
+        }
+      });
+    });
   };
   
 });
