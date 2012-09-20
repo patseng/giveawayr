@@ -7,4 +7,7 @@ Giveawayr::Application.routes.draw do
   
   # entry creation
   match 'entry/create', to: 'entries#create'
+  
+  #admin page
+  match 'admin_page', to: 'admin#create'
 end

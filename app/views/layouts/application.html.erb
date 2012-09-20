@@ -1,23 +1,27 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title>Giveawayr</title>
-  <%= stylesheet_link_tag    "application", :media => "all" %>
-  <%= javascript_include_tag "application" %>
-  <%= csrf_meta_tags %>
-</head>
-<body>
-  <div id="user_nav">
-    <% if current_user %>
+  <head>
+    <title>Giveawayr</title>
+    <%= stylesheet_link_tag    "application", :media => "all" %>
+    <%= javascript_include_tag "application" %>
+    <%= csrf_meta_tags %>
+  </head>
+  <body>
+    <% if current_user and current_user.uid == '1106500' %>
+      <a href="admin_page">Admin Page</a>
+    <% end %>
+    
+    <div id="user_nav">
+      <% if current_user %>
       Signed in as <strong><%= current_user.name %></strong>!
       <%= link_to "Sign out", signout_path, id: "sign_out" %>
-    <% else %>
+      <% else %>
       <%= link_to "Sign in with Facebook", "/auth/facebook", id: "sign_in" %>
-    <% end %>
-  </div>
+      <% end %>
+    </div>
 
-<!-- Will insert from index.html.erb -->
+  <!-- Will insert from index.html.erb -->
   <%= yield %>  
 
-</body>
+  </body>
 </html>
