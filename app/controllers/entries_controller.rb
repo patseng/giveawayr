@@ -10,8 +10,7 @@ class EntriesController < ApplicationController
   end
   
   def create
-    
-    facebook_id = params[:facebook_uid]
+    facebook_id = params[:facebook_uid] #params contains URL parameters
     # giveaway_id = params[:giveaway_id]
     
     # look up the user with that facebook_id
@@ -22,6 +21,12 @@ class EntriesController < ApplicationController
     entry = Entry.new({user: user, giveaway: Giveaway.first, points: 1})
     entry.save
     
-    render :nothing => true
+    if params[:enter_giveaway]
+      # not from ajax so we need to render something (i.e. login with FB and enter giveaway)
+      redirect_to root_url
+    else
+      # when ajax (i.e. enter giveaway after already signed in)
+      render :nothing => true 
+    end
   end
 end

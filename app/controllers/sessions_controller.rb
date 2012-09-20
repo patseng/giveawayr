@@ -2,7 +2,12 @@ class SessionsController < ApplicationController
   def create
     user = User.from_omniauth(env["omniauth.auth"])
     session[:user_id] = user.id #Store in session as a cookie
-    redirect_to root_url
+    if params[:enter_giveaway]
+      # TODO: only works if we have one provider - facebook
+      redirect_to :controller => 'entries', :action => 'create', facebook_uid: user.uid, enter_giveaway: true    
+    else
+      redirect_to root_url
+    end
   end
   
   def destroy 
